@@ -1,5 +1,9 @@
 # Snowplow Analytics Pipeline
 
+## Architecture
+
+![Snowplow Architecture](ttudb-system-architecture.png)
+
 This is an example of an end-to-end Snowplow pipeline to track events using a Kafka broker.
 
 The pipeline works in the following way:
@@ -26,6 +30,15 @@ In addition, the schema of iglu server must be initialized.
 docker-compose run iglu-server setup --config /snowplow/config/config.hocon
 ```
 After that, make sure all the containers are up with `docker-compose ps`. If not, try to run the up again.
+
+# Note! 
+
+after everything is up, you can;
+
+1. go to http://localhost/ to generate events
+2. http://localhost:9021/ to see the kafka topics
+3. connect localhost:5432 with user sp_user and password sp_password and the atomic schema in the igludb to see the data
+
 
 This command will create all the components and also a simple web application that sends pageviews and other events to the collector.
 Please checkout the `docker-compose.yml` file for more details.
