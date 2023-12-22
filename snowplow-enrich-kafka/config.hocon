@@ -1,0 +1,18 @@
+{
+  "input": {
+    "topicName": "snowplow_raw_good"
+    "bootstrapServers": "kafka:29092"
+  }
+
+  "output": {
+    "good": {
+      "topicName": "snowplow_enriched_good"
+      "bootstrapServers": "kafka:29092"
+    }
+
+    "bad": {
+      "topicName": "snowplow_enriched_bad"
+      "bootstrapServers": "kafka:29092"
+    }
+  }
+}
