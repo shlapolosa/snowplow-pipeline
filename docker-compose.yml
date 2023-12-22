@@ -68,18 +68,6 @@ services:
     environment:
       - "SP_JAVA_OPTS=-Xms512m -Xmx512m"
 
-  # stream-enrich:
-  #   image: snowplow/stream-enrich-kafka
-  #   command: [
-  #     "--config", "/snowplow/config/config.hocon",
-  #     "--resolver", "file:/snowplow/config/resolver.json"
-  #   ]
-  #   depends_on:
-  #     - scala-stream-collector
-  #   volumes:
-  #     - ./stream-enrich-config:/snowplow/config
-  #   environment:
-  #     - "SP_JAVA_OPTS=-Xms512m -Xmx512m"
 
   snowplow-enrich-kafka:
     image: snowplow/snowplow-enrich-kafka
@@ -132,6 +120,12 @@ services:
       - scala-stream-collector
     build:
       context: ./events-processor
+
+  snowplow-kafka-pg-loader:
+    depends_on:
+      - scala-stream-collector
+    build:
+      context: ./snowplow-kafka-pg-loader
 
 volumes:
   pgdata:

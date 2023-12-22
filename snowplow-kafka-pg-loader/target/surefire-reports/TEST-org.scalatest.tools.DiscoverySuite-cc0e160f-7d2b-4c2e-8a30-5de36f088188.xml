@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite 
+errors="0" failures="0" hostname="Liquids-MacBook-Pro.local" name="org.scalatest.tools.DiscoverySuite" tests="0" time="0.021" timestamp="2023-12-22T16:36:39">
+  <properties>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment">
+    </property>
+    <property 
+    name="sun.boot.library.path" value="/Users/socrates/.sdkman/candidates/java/8.322.06.1-amzn/jre/lib">
+</property>
+    <property name="java.vm.version" value="25.322-b06"> </property>
+    <property name="user.country.format" value="ZA"> </property>
+    <property name="gopherProxySet" value="false"> </property>
+    <property name="java.vm.vendor" value="Amazon.com Inc."> </property>
+    <property name="java.vendor.url" value="https://aws.amazon.com/corretto/">
+    </property>
+    <property name="path.separator" value=":"> </property>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"> </property>
+    <property name="file.encoding.pkg" value="sun.io"> </property>
+    <property name="user.country" value="GB"> </property>
+    <property name="sun.java.launcher" value="SUN_STANDARD"> </property>
+    <property name="sun.os.patch.level" value="unknown"> </property>
+    <property 
+    name="java.vm.specification.name" value="Java Virtual Machine Specification">
+</property>
+    <property 
+    name="user.dir" value="/Users/socrates/Development/snowplow-pipeline/snowplow-kafka-pg-loader">
+</property>
+    <property name="java.runtime.version" value="1.8.0_322-b06"> </property>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment">
+    </property>
+    <property 
+    name="basedir" value="/Users/socrates/Development/snowplow-pipeline/snowplow-kafka-pg-loader">
+</property>
+    <property 
+    name="java.endorsed.dirs" value="/Users/socrates/.sdkman/candidates/java/8.322.06.1-amzn/jre/lib/endorsed">
+</property>
+    <property name="os.arch" value="x86_64"> </property>
+    <property 
+    name="java.io.tmpdir" value="/var/folders/m2/7vzx_scj1l975ghfpc8cq4lc0000gp/T/">
+</property>
+    <property name="line.separator" value=" "> </property>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation">
+    </property>
+    <property name="os.name" value="Mac OS X"> </property>
+    <property name="sun.jnu.encoding" value="UTF-8"> </property>
+    <property 
+    name="java.library.path" value="/Users/socrates/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.">
+</property>
+    <property 
+    name="java.specification.name" value="Java Platform API Specification">
+</property>
+    <property name="java.class.version" value="52.0"> </property>
+    <property 
+    name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers">
+</property>
+    <property name="os.version" value="13.3.1"> </property>
+    <property 
+    name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16">
+</property>
+    <property name="user.home" value="/Users/socrates"> </property>
+    <property name="user.timezone" value=""> </property>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob">
+    </property>
+    <property name="java.specification.version" value="1.8"> </property>
+    <property name="file.encoding" value="UTF-8"> </property>
+    <property name="user.name" value="socrates"> </property>
+    <property 
+    name="java.class.path" value="/Users/socrates/Development/snowplow-pipeline/snowplow-kafka-pg-loader/target/test-classes:/Users/socrates/Development/snowplow-pipeline/snowplow-kafka-pg-loader/target/classes:/Users/socrates/.m2/repository/org/scala-lang/scala-library/2.11.7/scala-library-2.11.7.jar:/Users/socrates/.m2/repository/org/scalatest/scalatest_2.11/2.2.4/scalatest_2.11-2.2.4.jar:/Users/socrates/.m2/repository/org/scala-lang/scala-reflect/2.11.2/scala-reflect-2.11.2.jar:/Users/socrates/.m2/repository/org/scala-lang/modules/scala-xml_2.11/1.0.2/scala-xml_2.11-1.0.2.jar:/Users/socrates/.m2/repository/com/snowplowanalytics/snowplow-scala-analytics-sdk_2.11/0.2.0/snowplow-scala-analytics-sdk_2.11-0.2.0.jar:/Users/socrates/.m2/repository/org/json4s/json4s-jackson_2.11/3.2.10/json4s-jackson_2.11-3.2.10.jar:/Users/socrates/.m2/repository/org/json4s/json4s-core_2.11/3.2.10/json4s-core_2.11-3.2.10.jar:/Users/socrates/.m2/repository/org/json4s/json4s-ast_2.11/3.2.10/json4s-ast_2.11-3.2.10.jar:/Users/socrates/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.3.1/jackson-databind-2.3.1.jar:/Users/socrates/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.3.0/jackson-annotations-2.3.0.jar:/Users/socrates/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.3.1/jackson-core-2.3.1.jar:/Users/socrates/.m2/repository/com/amazonaws/aws-java-sdk-s3/1.11.118/aws-java-sdk-s3-1.11.118.jar:/Users/socrates/.m2/repository/com/amazonaws/aws-java-sdk-kms/1.11.118/aws-java-sdk-kms-1.11.118.jar:/Users/socrates/.m2/repository/com/amazonaws/aws-java-sdk-core/1.11.118/aws-java-sdk-core-1.11.118.jar:/Users/socrates/.m2/repository/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar:/Users/socrates/.m2/repository/org/apache/httpcomponents/httpclient/4.5.2/httpclient-4.5.2.jar:/Users/socrates/.m2/repository/org/apache/httpcomponents/httpcore/4.4.4/httpcore-4.4.4.jar:/Users/socrates/.m2/repository/commons-codec/commons-codec/1.9/commons-codec-1.9.jar:/Users/socrates/.m2/repository/software/amazon/ion/ion-java/1.0.2/ion-java-1.0.2.jar:/Users/socrates/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-cbor/2.6.6/jackson-dataformat-cbor-2.6.6.jar:/Users/socrates/.m2/repository/com/amazonaws/jmespath-java/1.11.118/jmespath-java-1.11.118.jar:/Users/socrates/.m2/repository/com/amazonaws/aws-java-sdk-dynamodb/1.11.118/aws-java-sdk-dynamodb-1.11.118.jar:/Users/socrates/.m2/repository/net/liftweb/lift-json_2.11/3.0.1/lift-json_2.11-3.0.1.jar:/Users/socrates/.m2/repository/org/scala-lang/scalap/2.11.7/scalap-2.11.7.jar:/Users/socrates/.m2/repository/org/scala-lang/scala-compiler/2.11.7/scala-compiler-2.11.7.jar:/Users/socrates/.m2/repository/com/thoughtworks/paranamer/paranamer/2.8/paranamer-2.8.jar:/Users/socrates/.m2/repository/org/apache/kafka/kafka-clients/0.11.0.0/kafka-clients-0.11.0.0.jar:/Users/socrates/.m2/repository/net/jpountz/lz4/lz4/1.3.0/lz4-1.3.0.jar:/Users/socrates/.m2/repository/org/xerial/snappy/snappy-java/1.1.2.6/snappy-java-1.1.2.6.jar:/Users/socrates/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar:/Users/socrates/.m2/repository/org/tpolecat/doobie-core_2.11/0.5.0-M6/doobie-core_2.11-0.5.0-M6.jar:/Users/socrates/.m2/repository/org/tpolecat/doobie-free_2.11/0.5.0-M6/doobie-free_2.11-0.5.0-M6.jar:/Users/socrates/.m2/repository/co/fs2/fs2-core_2.11/0.10.0-M6/fs2-core_2.11-0.10.0-M6.jar:/Users/socrates/.m2/repository/org/typelevel/cats-effect_2.11/0.4/cats-effect_2.11-0.4.jar:/Users/socrates/.m2/repository/org/typelevel/cats-core_2.11/1.0.0-MF/cats-core_2.11-1.0.0-MF.jar:/Users/socrates/.m2/repository/org/typelevel/cats-macros_2.11/1.0.0-MF/cats-macros_2.11-1.0.0-MF.jar:/Users/socrates/.m2/repository/org/typelevel/cats-kernel_2.11/1.0.0-MF/cats-kernel_2.11-1.0.0-MF.jar:/Users/socrates/.m2/repository/org/typelevel/machinist_2.11/0.6.1/machinist_2.11-0.6.1.jar:/Users/socrates/.m2/repository/org/typelevel/cats-free_2.11/1.0.0-MF/cats-free_2.11-1.0.0-MF.jar:/Users/socrates/.m2/repository/com/chuusai/shapeless_2.11/2.3.2/shapeless_2.11-2.3.2.jar:/Users/socrates/.m2/repository/org/typelevel/macro-compat_2.11/1.1.1/macro-compat_2.11-1.1.1.jar:/Users/socrates/.m2/repository/com/lihaoyi/sourcecode_2.11/0.1.4/sourcecode_2.11-0.1.4.jar:/Users/socrates/.m2/repository/org/scalikejdbc/scalikejdbc_2.11/3.0.2/scalikejdbc_2.11-3.0.2.jar:/Users/socrates/.m2/repository/org/scalikejdbc/scalikejdbc-core_2.11/3.0.2/scalikejdbc-core_2.11-3.0.2.jar:/Users/socrates/.m2/repository/org/apache/commons/commons-dbcp2/2.1.1/commons-dbcp2-2.1.1.jar:/Users/socrates/.m2/repository/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2.jar:/Users/socrates/.m2/repository/joda-time/joda-time/2.9.9/joda-time-2.9.9.jar:/Users/socrates/.m2/repository/org/joda/joda-convert/1.8.1/joda-convert-1.8.1.jar:/Users/socrates/.m2/repository/org/scalikejdbc/scalikejdbc-interpolation_2.11/3.0.2/scalikejdbc-interpolation_2.11-3.0.2.jar:/Users/socrates/.m2/repository/org/scalikejdbc/scalikejdbc-interpolation-macro_2.11/3.0.2/scalikejdbc-interpolation-macro_2.11-3.0.2.jar:/Users/socrates/.m2/repository/org/scalikejdbc/scalikejdbc-test_2.11/3.0.2/scalikejdbc-test_2.11-3.0.2.jar:/Users/socrates/.m2/repository/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar:/Users/socrates/.m2/repository/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar:/Users/socrates/.m2/repository/org/postgresql/postgresql/42.1.4/postgresql-42.1.4.jar:/Users/socrates/.m2/repository/postgresql/postgresql/9.0-801.jdbc4/postgresql-9.0-801.jdbc4.jar:/Users/socrates/.m2/repository/org/neo4j/driver/neo4j-java-driver/1.4.2/neo4j-java-driver-1.4.2.jar:/Users/socrates/.m2/repository/org/apache/kafka/kafka_2.11/0.10.1.0/kafka_2.11-0.10.1.0.jar:/Users/socrates/.m2/repository/net/sf/jopt-simple/jopt-simple/4.9/jopt-simple-4.9.jar:/Users/socrates/.m2/repository/com/yammer/metrics/metrics-core/2.2.0/metrics-core-2.2.0.jar:/Users/socrates/.m2/repository/org/slf4j/slf4j-log4j12/1.7.21/slf4j-log4j12-1.7.21.jar:/Users/socrates/.m2/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar:/Users/socrates/.m2/repository/com/101tec/zkclient/0.9/zkclient-0.9.jar:/Users/socrates/.m2/repository/org/apache/zookeeper/zookeeper/3.4.8/zookeeper-3.4.8.jar:/Users/socrates/.m2/repository/jline/jline/0.9.94/jline-0.9.94.jar:/Users/socrates/.m2/repository/io/netty/netty/3.7.0.Final/netty-3.7.0.Final.jar:/Users/socrates/.m2/repository/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.4/scala-parser-combinators_2.11-1.0.4.jar:/Users/socrates/.m2/repository/com/typesafe/config/1.3.1/config-1.3.1.jar:/Users/socrates/.m2/repository/org/apache/kafka/kafka-streams/0.11.0.0/kafka-streams-0.11.0.0.jar:/Users/socrates/.m2/repository/org/apache/kafka/connect-json/0.11.0.0/connect-json-0.11.0.0.jar:/Users/socrates/.m2/repository/org/apache/kafka/connect-api/0.11.0.0/connect-api-0.11.0.0.jar:/Users/socrates/.m2/repository/org/rocksdb/rocksdbjni/5.0.1/rocksdbjni-5.0.1.jar:/Users/socrates/.m2/repository/org/apache/logging/log4j/log4j-api/2.9.1/log4j-api-2.9.1.jar:/Users/socrates/.m2/repository/org/apache/logging/log4j/log4j-core/2.9.1/log4j-core-2.9.1.jar:/Users/socrates/.m2/repository/org/apache/logging/log4j/log4j-api-scala_2.11/11.0/log4j-api-scala_2.11-11.0.jar">
+</property>
+    <property name="java.vm.specification.version" value="1.8"> </property>
+    <property name="sun.arch.data.model" value="64"> </property>
+    <property 
+    name="java.home" value="/Users/socrates/.sdkman/candidates/java/8.322.06.1-amzn/jre">
+</property>
+    <property 
+    name="sun.java.command" value="org.scalatest.tools.Runner -R /Users/socrates/Development/snowplow-pipeline/snowplow-kafka-pg-loader/target/classes /Users/socrates/Development/snowplow-pipeline/snowplow-kafka-pg-loader/target/test-classes -o -fWDF /Users/socrates/Development/snowplow-pipeline/snowplow-kafka-pg-loader/target/surefire-reports/TestSuite.txt -u /Users/socrates/Development/snowplow-pipeline/snowplow-kafka-pg-loader/target/surefire-reports/.">
+</property>
+    <property name="java.specification.vendor" value="Oracle Corporation">
+    </property>
+    <property name="user.language" value="en"> </property>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit">
+    </property>
+    <property name="java.vm.info" value="mixed mode"> </property>
+    <property name="java.version" value="1.8.0_322"> </property>
+    <property 
+    name="java.ext.dirs" value="/Users/socrates/Library/Java/Extensions:/Users/socrates/.sdkman/candidates/java/8.322.06.1-amzn/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java">
+</property>
+    <property 
+    name="sun.boot.class.path" value="/Users/socrates/.sdkman/candidates/java/8.322.06.1-amzn/jre/lib/resources.jar:/Users/socrates/.sdkman/candidates/java/8.322.06.1-amzn/jre/lib/rt.jar:/Users/socrates/.sdkman/candidates/java/8.322.06.1-amzn/jre/lib/sunrsasign.jar:/Users/socrates/.sdkman/candidates/java/8.322.06.1-amzn/jre/lib/jsse.jar:/Users/socrates/.sdkman/candidates/java/8.322.06.1-amzn/jre/lib/jce.jar:/Users/socrates/.sdkman/candidates/java/8.322.06.1-amzn/jre/lib/charsets.jar:/Users/socrates/.sdkman/candidates/java/8.322.06.1-amzn/jre/lib/jfr.jar:/Users/socrates/.sdkman/candidates/java/8.322.06.1-amzn/jre/classes">
+</property>
+    <property name="java.vendor" value="Amazon.com Inc."> </property>
+    <property name="file.separator" value="/"> </property>
+    <property 
+    name="java.vendor.url.bug" value="https://github.com/corretto/corretto-8/issues/">
+</property>
+    <property name="sun.cpu.endian" value="little"> </property>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"> </property>
+    <property 
+    name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16">
+</property>
+    <property 
+    name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16">
+</property>
+    <property name="sun.cpu.isalist" value=""> </property>
+  </properties>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -14,6 +14,8 @@ Json event using the python analytics SDK from Snowplow. This event is then put 
 
 ## Run the pipeline
 
+# Note first go build the kafka-postgres loader in the snowplow-kafka-pg-loader project. consult the readme.
+
 Execute:
 
 ```sh
