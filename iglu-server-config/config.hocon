@@ -10,5 +10,13 @@
     "dbname": "igludb"
     "username": "sp_user"
     "password": "sp_password"
-  }
+  },
+  "superApiKey": "e5d6a3d6-7b3c-4d0a-9e6a-123456789abc",  // Replace with your generated UUID
+  "adminApiKeys": [
+    {
+      "uid": "admin",
+      "key": "3fa85f64-5717-4562-b3fc-2c963f66afa6",  // Replace with your generated UUID
+      "permissions": ["schemas:create", "schemas:read", "schemas:update", "schemas:delete", "apikeys:create", "apikeys:read", "apikeys:update", "apikeys:delete"]
+    }
+  ]
 }

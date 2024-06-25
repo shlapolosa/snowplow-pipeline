@@ -26,10 +26,11 @@
       {
         "name": "Custom repo",
         "priority": 0,
-        "vendorPrefixes": [ "com.mycompany" ],
+        "vendorPrefixes": [ "com.example_company" ],
         "connection": {
           "http": {
-            "uri": "http://iglu-server:8081/api"
+            "uri": "http://iglu-server:8081/api",
+            "apikey": "e5d6a3d6-7b3c-4d0a-9e6a-123456789abc"
           }
         }
       }

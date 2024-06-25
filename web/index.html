@@ -1,14 +1,13 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Snowplow test</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-    <!-- Snowplow starts plowing -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realtime Streaming Test Page</title>
     <script type="text/javascript">
-
         ;(function(p,l,o,w,i,n,g){if(!p[i]){p.GlobalSnowplowNamespace=p.GlobalSnowplowNamespace||[];
-        p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)
-        };p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;
+        p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)}
+        ;p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;
         n.src=w;g.parentNode.insertBefore(n,g)}}(window,document,"script","https://cdnjs.cloudflare.com/ajax/libs/snowplow/2.18.2/sp.js","snowplow"));
 
         window.snowplow('newTracker', 'cf', 'localhost:8080', {
@@ -18,38 +17,80 @@
 
         window.snowplow('enableActivityTracking', 10, 10);
         window.snowplow('enableLinkClickTracking');
-        window.snowplow('trackPageView');
 
-	/* Example function to use with a custom schema registered in the iglu server
-	function clickLink() {
-		console.log("Custom event");
-		window.snowplow('trackUnstructEvent', {
-			schema: 'iglu:com./mycompany/jsonschema/1-0-0',
-			data: {
-				event: 'click',
-				event_properties: {
-					elem: 'button',
-					id: 4532
-				},
-				user_properties: {
-					email: 'mail@mail.com',
-					name: 'John'
-				}
-			}
-		});
-	}*/
+        let mouseMoveInterval;
+        let last_sent_pos = {};
+        let mouse_pos = {};
+        let mouseTrackingEnabled = false;
+
+        function trackPageView() {
+            window.snowplow('trackPageView');
+        }
+
+        function generateRandomMouseMovement() {
+            mouseMoveInterval = setInterval(() => {
+                const randomX = Math.floor(Math.random() * 500);
+                const randomY = Math.floor(Math.random() * 300);
+                mouse_pos = {
+                    posx: randomX,
+                    posy: randomY
+                };
+                document.getElementById('x_label').innerHTML = randomX;
+                document.getElementById('y_label').innerHTML = randomY;
+                window.snowplow('trackSelfDescribingEvent', {
+                    schema: 'iglu:com.example_company/mouse_move/jsonschema/1-0-0',
+                    data: mouse_pos
+                });
+            }, 1000);
+        }
+
+        function stopTracking() {
+            clearInterval(mouseMoveInterval);
+            mouseTrackingEnabled = false;
+            document.getElementById('mouse-box').removeEventListener('mousemove', mouse_move);
+            document.getElementById('mouse-box').removeEventListener('mousedown', trackMouseClick);
+        }
+
+        function mouse_move(e) {
+            e.stopPropagation();
+            mouse_pos = {
+                posx: e.clientX,
+                posy: e.clientY
+            };
+            document.getElementById('x_label').innerHTML = e.clientX;
+            document.getElementById('y_label').innerHTML = e.clientY;
+        }
+
+        function trackMouseClick(e) {
+            const mouse_click = {
+                posx: e.clientX,
+                posy: e.clientY,
+                button: e.button === 0 ? 1 : e.button === 2 ? 2 : 0 // 1 for left click, 2 for right click
+            };
+            window.snowplow('trackSelfDescribingEvent', {
+                schema: 'iglu:com.example_company/mouse_click/jsonschema/1-0-0',
+                data: mouse_click
+            });
+        }
+
+        function startMouseTracking() {
+            mouseTrackingEnabled = true;
+            document.getElementById('mouse-box').addEventListener('mousemove', mouse_move);
+            document.getElementById('mouse-box').addEventListener('mousedown', trackMouseClick);
+        }
 
     </script>
 </head>
-
 <body>
-    <h1>Some links</h1>
-
-
-    <a href=http://google.com target="_blank" id="googleLink">Google</a>
-    <br>
-    <a href=http://wikipedia.com target="_blank" id="wikipediaLink">Wikipedia</a>
-
+    <h1>Welcome to the Realtime Stream Test Page</h1>
+    <p>Move your mouse around in the box or click the buttons.</p>
+    <button onclick="trackPageView()">Track page view</button>
+    <button onclick="generateRandomMouseMovement()">Generate random mouse movement</button>
+    <button onclick="startMouseTracking()">Start Mouse Tracking</button>
+    <button onclick="stopTracking()">Stop</button>
+    <div id="mouse-box" style="width: 500px; height: 300px; border: 1px solid black;">
+        <p>X: <span id="x_label"></span></p>
+        <p>Y: <span id="y_label"></span></p>
+    </div>
 </body>
-
 </html>
