@@ -23,6 +23,7 @@ Json event using the python analytics SDK from Snowplow. This event is then put 
 Execute:
 
 ```sh
+docker-compose build --no-cache
 docker-compose up -d
 ```
 In addition, the schema of iglu server must be initialized.
