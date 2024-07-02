@@ -1,0 +1,5 @@
+confluent_kafka
+snowplow_analytics_sdk
+fastapi
+uvicorn
+websockets
