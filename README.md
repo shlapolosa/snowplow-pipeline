@@ -8,6 +8,8 @@ This is an example of an end-to-end Snowplow pipeline to track events using a Ka
 
 The pipeline works in the following way:
 
+
+![Flow](flow.png)
 1. A request is sent to the Scala Collector
 2. The raw event (thift event) is put into the `snowplow_raw_good` (or bad) topic
 3. The enricher grabs the raw events, parses them and put them into the `snowplow_parsed_good` (or bad) topic
