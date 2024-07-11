@@ -76,3 +76,10 @@ Assuming you have configured Kafka for all the components:
 4. Deploy the events processor application using the previous `k8s/events-processor/deploy.yml` file.
 5. Run the webapp example locally and change the collector's address to the load balancer IP address created for the collector. The collector is using the port 80 so remove the port and just leave the IP address.
 6. Once everything is running, open the webapp and refresh the page a couple of times. Checkout the logs of the events processor pod to see if the Json events are created correctly.
+
+
+# to build images:
+
+docker buildx create --use
+docker buildx inspect --bootstrap
+docker buildx build --platform linux/amd64,linux/arm64 -t socrates12345/events-processor:latest --push .
