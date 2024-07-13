@@ -61,9 +61,9 @@ class PostgresLoader(kafkaProducer: KafkaProducer[String, String]) extends Loggi
             }
 
             // Send to Kafka topic
-            val jsonStr = compactRender(Extraction.decompose(jsonMap))
-            val record = new ProducerRecord[String, String](config.getString("kafka.sink"), jsonStr)
-            kafkaProducer.send(record)
+            // val jsonStr = compactRender(Extraction.decompose(jsonMap))
+            // val record = new ProducerRecord[String, String](config.getString("kafka.sink"), jsonStr)
+            // kafkaProducer.send(record)
 
         } catch {
             case e: Exception => e.printStackTrace()

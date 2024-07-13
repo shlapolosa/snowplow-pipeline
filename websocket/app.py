@@ -11,9 +11,11 @@ logging.basicConfig(level=logging.INFO)
 app = FastAPI()
 
 kafka_config = {
-    'bootstrap.servers': "kafka:29092",
-    'group.id': 'python-consumer',
-    'auto.offset.reset': 'earliest'
+    'bootstrap.servers': "kafka:29092,kafka.confluent.svc.cluster.local:9092",
+    'group.id': 'websocket',
+    'enable.auto.commit': 'false',
+    'auto.offset.reset': 'smallest'
+
 }
 
 html = """
@@ -46,7 +48,10 @@ html = """
         <h1>WebSocket Test</h1>
         <div id="drawingArea"></div>
         <script>
-            var ws = new WebSocket("ws://localhost:8000/ws");
+            // Derive the WebSocket URL from the current location
+            var ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
+            var ws_url = ws_scheme + "://" + window.location.host + "/consumer/ws";
+            var ws = new WebSocket(ws_url);
             ws.onmessage = function(event) {
                 var eventData = JSON.parse(event.data);
                 if (eventData.event_name === "mouse_move") {
@@ -93,11 +98,11 @@ class ConnectionManager:
 
 manager = ConnectionManager()
 
-@app.get("/")
+@app.get("/consumer")
 async def get():
     return HTMLResponse(html)
 
-@app.websocket("/ws")
+@app.websocket("/consumer/ws")
 async def websocket_endpoint(websocket: WebSocket):
     await manager.connect(websocket)
     try:
@@ -117,8 +122,13 @@ async def kafka_consumer_loop():
     while True:
         try:
             logging.info("Attempting to connect to Kafka...")
-            kafka_consumer = Consumer(kafka_config)
-            kafka_consumer.subscribe(['snowplow_json_event'])
+            kafka_consumer = Consumer(kafka_config,logger=logging)
+
+            def print_assignment(consumer, partitions):
+                print('Assignment:', partitions)
+
+            kafka_consumer.subscribe(['snowplow_json_event'],on_assign=print_assignment)
+
             logging.info("Successfully connected to Kafka and subscribed to topic 'snowplow_json_event'.")
             break
         except KafkaException as e:

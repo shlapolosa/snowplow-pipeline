@@ -1,2 +1,3 @@
 confluent_kafka
 snowplow_analytics_sdk
+quixstreams==2.7.0
