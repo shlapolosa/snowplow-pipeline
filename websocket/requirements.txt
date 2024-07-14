@@ -3,3 +3,4 @@ snowplow_analytics_sdk
 fastapi
 uvicorn
 websockets
+quixstreams==2.7.0

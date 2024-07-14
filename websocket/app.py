@@ -1,6 +1,6 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
-from confluent_kafka import Consumer, KafkaError, KafkaException
+from quixstreams import Application
 import json
 import asyncio
 import logging
@@ -9,14 +9,6 @@ import os
 logging.basicConfig(level=logging.INFO)
 
 app = FastAPI()
-
-kafka_config = {
-    'bootstrap.servers': "kafka:29092,kafka.confluent.svc.cluster.local:9092",
-    'group.id': 'websocket',
-    'enable.auto.commit': 'false',
-    'auto.offset.reset': 'smallest'
-
-}
 
 html = """
 <!DOCTYPE html>
@@ -117,52 +109,33 @@ async def websocket_endpoint(websocket: WebSocket):
 
 async def kafka_consumer_loop():
     logging.info("Starting Kafka consumer loop...")
-    retries = 0
-    max_retries = 5
-    while True:
-        try:
-            logging.info("Attempting to connect to Kafka...")
-            kafka_consumer = Consumer(kafka_config,logger=logging)
 
-            def print_assignment(consumer, partitions):
-                print('Assignment:', partitions)
+    kafka_app = Application(
+        broker_address="kafka:29092,kafka.confluent.svc.cluster.local:9092",
+        loglevel="DEBUG",
+        consumer_group="websocket",
+        auto_offset_reset="latest",
+    )
 
-            kafka_consumer.subscribe(['snowplow_json_event'],on_assign=print_assignment)
+    with kafka_app.get_consumer() as consumer:
+        consumer.subscribe(["snowplow_json_event"])
 
-            logging.info("Successfully connected to Kafka and subscribed to topic 'snowplow_json_event'.")
-            break
-        except KafkaException as e:
-            retries += 1
-            logging.error(f"Kafka connection error: {e}")
-            if retries >= max_retries:
-                logging.critical("Max retries reached. Exiting Kafka consumer loop.")
-                return
-            logging.info(f"Retrying Kafka connection in 5 seconds... (Attempt {retries}/{max_retries})")
-            await asyncio.sleep(5)
-
-    while True:
-        try:
-            logging.info("Polling for messages...")
-            msg = kafka_consumer.poll(1.0)
+        while True:
+            msg = consumer.poll(1.0)
+            
             if msg is None:
                 await asyncio.sleep(1)
                 continue
             if msg.error():
-                if msg.error().code() == KafkaError._PARTITION_EOF:
-                    continue
-                else:
-                    logging.error(f"Kafka message error: {msg.error()}")
-                    break
+                logging.error(f"Consumer error: {msg.error()}")
+                continue
+            
+            value = json.loads(msg.value().decode('utf-8'))
+            await manager.send_message(json.dumps(value))
+            offset = msg.offset()
 
-            event = msg.value().decode('utf-8')
-            logging.info(f"Received message from Kafka: {event}")
-            await manager.send_message(event)
-        except KafkaException as e:
-            logging.error(f"Kafka polling error: {e}")
-            await asyncio.sleep(5)
-        except Exception as e:
-            logging.error(f"Unexpected error: {e}")
-            await asyncio.sleep(5)
+            logging.info(f"{offset}  {value}")
+            consumer.store_offsets(msg)
 
 @app.on_event("startup")
 async def startup_event():
