@@ -1,5 +1,6 @@
 import snowplow_analytics_sdk.event_transformer
 import snowplow_analytics_sdk.snowplow_event_transformation_exception
+from quixstreams.kafka.configuration import ConnectionConfig
 import logging
 from quixstreams import Application
 from quixstreams.models.serializers import Deserializer
@@ -24,11 +25,21 @@ class SnowplowThriftDeserializer(Deserializer):
 
 def main():
     logging.info("START")
+
+    # Define the ConnectionConfig with security parameters
+    connection_config = ConnectionConfig(
+        bootstrap_servers="pkc-12576z.us-west2.gcp.confluent.cloud:9092,kafka:29092,kafka.confluent.svc.cluster.local:9092",
+        security_protocol="SASL_SSL",
+        sasl_mechanism="PLAIN",
+        sasl_username="UJXR2AHHSOHL2O4K",
+        sasl_password="L4piWdT0pE4t+LiP5xLrkfWxmhePL8jdk0LaSX2N5cSevSBF1EHjr2oygqJX64FC"
+    )
+
     app = Application(
-        broker_address="kafka:29092,kafka.confluent.svc.cluster.local:9092",
+        broker_address=connection_config,
         loglevel="DEBUG",
         auto_offset_reset="latest",
-        consumer_group="event_processor"
+        consumer_group="event_processor",
     )
 
     # Define input topic with custom deserializer

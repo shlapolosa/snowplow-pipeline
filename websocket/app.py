@@ -1,6 +1,8 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
 from quixstreams import Application
+from quixstreams.kafka.configuration import ConnectionConfig
+
 import json
 import asyncio
 import logging
@@ -45,17 +47,21 @@ html = """
             var ws_url = ws_scheme + "://" + window.location.host + "/consumer/ws";
             var ws = new WebSocket(ws_url);
             ws.onmessage = function(event) {
-                var eventData = JSON.parse(event.data);
-                if (eventData.event_name === "mouse_move") {
-                    var pos = eventData.unstruct_event_com_example_company_mouse_move_1;
-                    drawDot(pos.posx, pos.posy, 'move');
-                } else if (eventData.event_name === "mouse_click") {
-                    var pos = eventData.unstruct_event_com_example_company_mouse_click_1;
-                    drawDot(pos.posx, pos.posy, 'click');
-                }
+                var messages = JSON.parse(event.data);
+                console.log('WebSocket message received:', messages);  // Log the received messages
+                messages.forEach(function(eventData) {
+                    if (eventData.event_name === "mouse_move") {
+                        var pos = eventData.unstruct_event_com_example_company_mouse_move_1;
+                        drawDot(pos.posx, pos.posy, 'move');
+                    } else if (eventData.event_name === "mouse_click") {
+                        var pos = eventData.unstruct_event_com_example_company_mouse_click_1;
+                        drawDot(pos.posx, pos.posy, 'click');
+                    }
+                });
             };
 
             function drawDot(x, y, type) {
+                console.log('Received x: ' + x + ', y: ' + y);  // Log the coordinates
                 var drawingArea = document.getElementById('drawingArea');
                 var dot = document.createElement('div');
                 dot.className = `dot ${type}`;
@@ -110,8 +116,17 @@ async def websocket_endpoint(websocket: WebSocket):
 async def kafka_consumer_loop():
     logging.info("Starting Kafka consumer loop...")
 
+        # Define the ConnectionConfig with security parameters
+    connection_config = ConnectionConfig(
+        bootstrap_servers="pkc-12576z.us-west2.gcp.confluent.cloud:9092,kafka:29092,kafka.confluent.svc.cluster.local:9092",
+        security_protocol="SASL_SSL",
+        sasl_mechanism="PLAIN",
+        sasl_username="UJXR2AHHSOHL2O4K",
+        sasl_password="L4piWdT0pE4t+LiP5xLrkfWxmhePL8jdk0LaSX2N5cSevSBF1EHjr2oygqJX64FC"
+    )
+
     kafka_app = Application(
-        broker_address="kafka:29092,kafka.confluent.svc.cluster.local:9092",
+        broker_address=connection_config,
         loglevel="DEBUG",
         consumer_group="websocket",
         auto_offset_reset="latest",

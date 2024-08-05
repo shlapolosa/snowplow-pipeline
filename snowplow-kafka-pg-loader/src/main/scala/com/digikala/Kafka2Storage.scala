@@ -20,6 +20,9 @@ object KafkaProducerConfig {
         props.put("bootstrap.servers", config.getString("kafka.brokers"))
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
+        props.put("security.protocol", config.getString("kafka.security.producer.protocol"))
+        props.put("sasl.mechanism", config.getString("kafka.security.producer.mechanisms"))
+        props.put("sasl.jaas.config", s"""org.apache.kafka.common.security.plain.PlainLoginModule required username="${config.getString("kafka.security.producer.username")}" password="${config.getString("kafka.security.producer.password")}";""")
         new KafkaProducer[String, String](props)
     }
 }
@@ -94,12 +97,16 @@ class PostgresThread(kafkaProducer: KafkaProducer[String, String]) extends Threa
     println("bootstrap.servers: " + config.getString("kafka.brokers"))
     println("key.deserializer: " + "org.apache.kafka.common.serialization.StringDeserializer")
     println("value.deserializer: " + config.getString("kafka.brokers"))
-    println("kgroup.id: " + config.getString("postgres.groupid"))
+    println("group.id: " + config.getString("postgres.groupid"))
 
     props.put("bootstrap.servers", config.getString("kafka.brokers"))
     props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("group.id", config.getString("postgres.groupid"))
+    props.put("security.protocol", config.getString("kafka.security.consumer.protocol"))
+    props.put("sasl.mechanism", config.getString("kafka.security.consumer.mechanisms"))
+    props.put("sasl.jaas.config", s"""org.apache.kafka.common.security.plain.PlainLoginModule required username="${config.getString("kafka.security.consumer.username")}" password="${config.getString("kafka.security.consumer.password")}";""")
+
     val consumer = new KafkaConsumer[String, String](props)
     consumer.subscribe(Collections.singletonList(config.getString("kafka.source")))
 
